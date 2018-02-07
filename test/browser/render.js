@@ -238,6 +238,11 @@ describe('render()', () => {
 		expect(scratch.childNodes[0]).to.have.property('className', 'bar');
 	});
 
+	it('should allow a list as className', () => {
+		render(<div className={["foo", "bar"]} />, scratch);
+		expect(scratch.childNodes[0]).to.have.property('className', 'foo bar');
+	});
+
 	it('should apply style as String', () => {
 		render(<div style="top:5px; position:relative;" />, scratch);
 		expect(scratch.childNodes[0]).to.have.deep.property('style.cssText')

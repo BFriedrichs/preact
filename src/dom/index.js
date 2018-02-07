@@ -44,6 +44,14 @@ export function setAccessor(node, name, old, value, isSvg) {
 		if (value) value(node);
 	}
 	else if (name==='class' && !isSvg) {
+		if (Array.isArray(value)) {
+			let joinable = true;
+			for (let i in value) {
+				joinable = joinable && typeof value[i]==='string';
+				if (!joinable) break;
+			}
+			value = joinable ? value.join(' ') : value;
+		}
 		node.className = value || '';
 	}
 	else if (name==='style') {
